@@ -1,0 +1,20 @@
+input,
+button {
+  padding: 4px;
+  border: 1px solid black;
+}
+ol {
+  list-style-type: square;
+}
+.status {
+  color: green;
+}
+.status_red {
+  color: red;
+}
+.modal {
+  display: none;
+}
+.button-chose-category {
+  display: block;
+}

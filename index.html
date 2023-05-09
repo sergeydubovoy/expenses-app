@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expenses App</title>
-    <link rel="stylesheet" href="./styles/reset.css" />
+    <!-- <link rel="stylesheet" href="./styles/reset.css" /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +14,40 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    Приложение для учета расходов
+    <h1>Учет расходов</h1>
+    <input js-data="js-input" class="input" type="number" />
+    <button js-data="js-button-add-expense" class="button-add-expense">
+      Добавить
+    </button>
+    <button js-data="js-button-chose-category" class="button-chose-category">
+      Кафе и рестораны<span> &#9660;</span>
+    </button>
+    <div class="modal">
+      <div class="modal-content">
+        <ul>
+          <li>Еда</li>
+          <li>Кафе и рестораны</li>
+          <li>Транспорт</li>
+          <li>Развлечения</li>
+          <li>Одежда</li>
+          <li>Электроника</li>
+          <li>Дом</li>
+          <li>Здоровье</li>
+          <li>Образование</li>
+          <li>Платежи</li>
+          <li>Подарки</li>
+        </ul>
+      </div>
+    </div>
+    <p>Лимит: <span data-js="js-limit" class="limit"></span>₽</p>
+    <button js-data="js-button-reset-limit" class="button-reset-limit">
+      &#10000;
+    </button>
+    <p>Сумма: <span data-js="js-sum" class="sum"></span> ₽</p>
+    <p>Статус: <span data-js="js-status" class="status"></span></p>
+    <h2>История</h2>
+    <div js-data="js-history" class="js-history"></div>
+    <button js-data="js-button-reset" class="button-reset">Сбросить</button>
     <script src="./js/index.js"></script>
   </body>
 </html>
