@@ -4,11 +4,11 @@ const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Все не очень";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
 
-const inputNode = document.querySelector('[js-data="js-input"]');
-const buttonNode = document.querySelector('[js-data="js-button-add-expense"]');
+const inputNode = document.querySelector('[js-data="js-add-expense__input"]');
+const buttonNode = document.querySelector('[js-data="js-add-expense__button"]');
 const historyNode = document.querySelector('[js-data="js-history"]');
 const sumNode = document.querySelector('[data-js="js-sum"]');
-const limitNode = document.querySelector('[data-js="js-limit"]');
+const limitNode = document.querySelector('[data-js="js-limit__value"]');
 const statusNode = document.querySelector('[data-js="js-status"]');
 
 const expenses = [];

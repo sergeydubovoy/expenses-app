@@ -1,0 +1,22 @@
+.status {
+  color: green;
+}
+.status_red {
+  color: red;
+}
+.limit-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.limit__text {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+}
+.limit__value {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}

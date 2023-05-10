@@ -1,0 +1,15 @@
+.add-expense-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border-radius: 30px;
+  width: 300px;
+}
+.button-chose-category {
+  display: block;
+}
+::placeholder {
+  color: black;
+  text-align: right;
+}

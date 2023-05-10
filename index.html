@@ -4,50 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expenses App</title>
-    <!-- <link rel="stylesheet" href="./styles/reset.css" /> -->
+    <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <h1>Учет расходов</h1>
-    <input js-data="js-input" class="input" type="number" />
-    <button js-data="js-button-add-expense" class="button-add-expense">
-      Добавить
-    </button>
-    <button js-data="js-button-chose-category" class="button-chose-category">
-      Кафе и рестораны<span> &#9660;</span>
-    </button>
-    <div class="modal">
-      <div class="modal-content">
-        <ul>
-          <li>Еда</li>
-          <li>Кафе и рестораны</li>
-          <li>Транспорт</li>
-          <li>Развлечения</li>
-          <li>Одежда</li>
-          <li>Электроника</li>
-          <li>Дом</li>
-          <li>Здоровье</li>
-          <li>Образование</li>
-          <li>Платежи</li>
-          <li>Подарки</li>
-        </ul>
+    <div class="container">
+      <h1 class="expense-app__title" >Учет расходов</h1>
+      <div class="add-expense-wrapper">
+        <input
+          js-data="js-add-expense__input"
+          class="add-expense__input"
+          type="number"
+          placeholder="₽"
+        />
+        <button js-data="js-add-expense__button" class="add-expense__button">
+          Добавить
+        </button>
+        <button
+          js-data="js-button-chose-category"
+          class="button-chose-category"
+        >
+          Кафе и рестораны<span> &#9660;</span>
+        </button>
+        <div class="modal">
+          <div class="modal-content">
+            <ul>
+              <li>Еда</li>
+              <li>Кафе и рестораны</li>
+              <li>Транспорт</li>
+              <li>Развлечения</li>
+              <li>Одежда</li>
+              <li>Электроника</li>
+              <li>Дом</li>
+              <li>Здоровье</li>
+              <li>Образование</li>
+              <li>Платежи</li>
+              <li>Подарки</li>
+            </ul>
+          </div>
+        </div>
       </div>
+      <div class="limit-wrapper">
+        <p class="limit__text">
+          Лимит: <span data-js="js-limit__value" class="limit__value"></span> ₽
+        </p>
+        <button js-data="js-button-change-limit" class="button-change-limit">
+          &#10000;
+        </button>
+      </div>
+      <p>Сумма: <span data-js="js-sum" class="sum"></span> ₽</p>
+      <p>Статус: <span data-js="js-status" class="status"></span></p>
+      <h2>История</h2>
+      <div js-data="js-history" class="js-history"></div>
+      <button js-data="js-button-reset" class="button-reset">Сбросить</button>
     </div>
-    <p>Лимит: <span data-js="js-limit" class="limit"></span>₽</p>
-    <button js-data="js-button-reset-limit" class="button-reset-limit">
-      &#10000;
-    </button>
-    <p>Сумма: <span data-js="js-sum" class="sum"></span> ₽</p>
-    <p>Статус: <span data-js="js-status" class="status"></span></p>
-    <h2>История</h2>
-    <div js-data="js-history" class="js-history"></div>
-    <button js-data="js-button-reset" class="button-reset">Сбросить</button>
     <script src="./js/index.js"></script>
   </body>
 </html>
