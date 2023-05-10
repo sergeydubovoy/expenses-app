@@ -15,22 +15,25 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="expense-app__title" >Учет расходов</h1>
+      <h1 class="expense-app__title">Учет расходов</h1>
       <div class="add-expense-wrapper">
         <input
-          js-data="js-add-expense__input"
-          class="add-expense__input"
+          js-data="js-expenses__input"
+          class="button expenses__input"
           type="number"
           placeholder="₽"
         />
-        <button js-data="js-add-expense__button" class="add-expense__button">
-          Добавить
+        <button
+          js-data="js-expenses__button_chose-category"
+          class="button expenses__button_chose-category"
+        >
+          Категория<span>></span>
         </button>
         <button
-          js-data="js-button-chose-category"
-          class="button-chose-category"
+          js-data="js-expenses__button_add-expense"
+          class="button expenses__button_add-expense"
         >
-          Кафе и рестораны<span> &#9660;</span>
+          Добавить
         </button>
         <div class="modal">
           <div class="modal-content">
@@ -50,19 +53,29 @@
           </div>
         </div>
       </div>
-      <div class="limit-wrapper">
-        <p class="limit__text">
-          Лимит: <span data-js="js-limit__value" class="limit__value"></span> ₽
-        </p>
-        <button js-data="js-button-change-limit" class="button-change-limit">
-          &#10000;
-        </button>
+      <div class="status-wrapper">
+        <div class="limit-wrapper">
+          <p class="limit__text">
+            Лимит:
+            <span data-js="js-limit__value" class="limit__value"></span> ₽
+          </p>
+          <button js-data="js-button-change-limit" class="button-change-limit">
+            &#10000;
+          </button>
+        </div>
+        <p>Сумма: <span data-js="js-sum" class="sum"></span> ₽</p>
+        <p>Статус: <span data-js="js-status" class="status"></span></p>
       </div>
-      <p>Сумма: <span data-js="js-sum" class="sum"></span> ₽</p>
-      <p>Статус: <span data-js="js-status" class="status"></span></p>
-      <h2>История</h2>
-      <div js-data="js-history" class="js-history"></div>
-      <button js-data="js-button-reset" class="button-reset">Сбросить</button>
+      <div class="history-wrapper">
+        <h2>История</h2>
+        <div js-data="js-history" class="js-history"></div>
+      </div>
+      <button
+        js-data="js-history__button_reset"
+        class="button history__button_reset"
+      >
+        Сбросить
+      </button>
     </div>
     <script src="./js/index.js"></script>
   </body>

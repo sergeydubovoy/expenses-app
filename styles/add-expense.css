@@ -1,15 +1,41 @@
 .add-expense-wrapper {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 20px;
+  background-color: #fce4ec;
+  padding: 18px;
   border-radius: 30px;
   width: 300px;
+  gap: 18px;
 }
-.button-chose-category {
+.expenses__button_chose-category {
+  position: relative;
   display: block;
+}
+.expenses__button_chose-category span {
+  position: absolute;
+  right: 25px;
+  transform: rotateZ(90deg);
 }
 ::placeholder {
   color: black;
   text-align: right;
+}
+.button {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #f5f5f5;
+  border-radius: 20px;
+  height: 50px;
+  background-color: whitesmoke;
+  outline: none;
+}
+.expenses__input {
+  background-color: whitesmoke;
+}
+.expenses__button_add-expense {
+  background-color: #e1f5fe;
+}
+.history__button_reset {
+  background-color: #e1f5fe;
 }
