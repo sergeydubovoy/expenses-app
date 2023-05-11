@@ -15,56 +15,103 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="expense-app__title">Учет расходов</h1>
-      <div class="add-expense-wrapper">
+      <h1 class="title_main">Учет расходов</h1>
+      <div class="manage-wrapper">
         <input
-          js-data="js-expenses__input"
-          class="button expenses__input"
+          js-data="js-expense__input"
+          class="button expense__input"
           type="number"
           placeholder="₽"
         />
-        <button
-          js-data="js-expenses__button_chose-category"
-          class="button expenses__button_chose-category"
-        >
-          Категория<span>></span>
-        </button>
-        <button
-          js-data="js-expenses__button_add-expense"
-          class="button expenses__button_add-expense"
-        >
-          Добавить
-        </button>
-        <div class="modal">
-          <div class="modal-content">
-            <ul>
-              <li>Еда</li>
-              <li>Кафе и рестораны</li>
-              <li>Транспорт</li>
-              <li>Развлечения</li>
-              <li>Одежда</li>
-              <li>Электроника</li>
-              <li>Дом</li>
-              <li>Здоровье</li>
-              <li>Образование</li>
-              <li>Платежи</li>
-              <li>Подарки</li>
+        <div class="categories-wrapper">
+          <button
+            js-data="js-categories__button"
+            class="button categories__button"
+          >
+            Категория<span>></span>
+          </button>
+          <div
+            js-data="js-categories__modal-wrapper"
+            class="categories__modal-wrapper"
+          >
+            <ul class="categories__list">
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Еда
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Кафе и рестораны
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Транспорт
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Развлечения
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Одежда
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Электроника
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Дом
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Здоровье
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Образование
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Платежи
+                </button>
+              </li>
+              <li>
+                <button js-data="js-categories__item" class="categories__item">
+                  Подарки
+                </button>
+              </li>
             </ul>
           </div>
         </div>
+        <button
+          js-data="js-expense__button_add"
+          class="button expense__button_add"
+        >
+          Добавить
+        </button>
       </div>
       <div class="status-wrapper">
         <div class="limit-wrapper">
           <p class="limit__text">
             Лимит:
-            <span data-js="js-limit__value" class="limit__value"></span> ₽
+            <span js-data="js-limit__value" class="limit__value"></span> ₽
           </p>
           <button js-data="js-button-change-limit" class="button-change-limit">
             &#10000;
           </button>
         </div>
-        <p>Сумма: <span data-js="js-sum" class="sum"></span> ₽</p>
-        <p>Статус: <span data-js="js-status" class="status"></span></p>
+        <p>Сумма: <span js-data="js-sum" class="sum"></span> ₽</p>
+        <p>Статус: <span js-data="js-status" class="status"></span></p>
       </div>
       <div class="history-wrapper">
         <h2>История</h2>

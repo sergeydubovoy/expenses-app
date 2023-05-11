@@ -1,5 +1,4 @@
-@import url(./add-expense.css);
-@import url(./modal.css);
+@import url(./expenses.css);
 @import url(./history.css);
 @import url(./status.css);
 
@@ -16,7 +15,7 @@ body {
   width: 800px;
   position: relative;
 }
-.expense-app__title {
+.title_main {
   margin: 20px 0;
   text-align: center;
   font-weight: 700;

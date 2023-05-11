@@ -4,14 +4,26 @@ const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Все не очень";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
 
-const inputNode = document.querySelector('[js-data="js-expenses__input"]');
-const buttonNode = document.querySelector(
-  '[js-data="js-expenses__button_add-expense"]'
-);
+const inputNode = document.querySelector('[js-data="js-expense__input"]');
+const buttonNode = document.querySelector('[js-data="js-expense__button_add"]');
 const historyNode = document.querySelector('[js-data="js-history"]');
-const sumNode = document.querySelector('[data-js="js-sum"]');
-const limitNode = document.querySelector('[data-js="js-limit__value"]');
-const statusNode = document.querySelector('[data-js="js-status"]');
+const sumNode = document.querySelector('[js-data="js-sum"]');
+const limitNode = document.querySelector('[js-data="js-limit__value"]');
+const statusNode = document.querySelector('[js-data="js-status"]');
+
+const categoriesModalWrapper = document.querySelector(
+  '[js-data="js-categories__modal-wrapper"]'
+);
+const buttonChoseCategory = document.querySelector(
+  '[js-data="js-categories__button"]'
+);
+const categoryNode = document.querySelectorAll(
+  '[js-data="js-categories__item"]'
+);
+const categoryNodes = document.querySelectorAll(
+  '[js-data="js-categories__item"]'
+);
+let selectedCategory = "";
 
 const expenses = [];
 
@@ -100,3 +112,26 @@ inputNode.addEventListener("keydown", function (event) {
     buttonNode.click();
   }
 });
+
+// Новая функциональность
+
+buttonChoseCategory.addEventListener("click", function () {
+  toggleCategoriesModal();
+});
+
+categoryNodes.forEach(function (categoryNode) {
+  categoryNode.addEventListener("click", function () {
+    selectCategory(categoryNode.textContent);
+  });
+});
+
+function toggleCategoriesModal() {
+  categoriesModalWrapper.classList.toggle("categories__modal-wrapper_active");
+  selectedCategory = "";
+}
+
+function selectCategory(category) {
+  selectedCategory = category;
+  categoriesModalWrapper.classList.remove("categories__modal-wrapper_active");
+  buttonChoseCategory.textContent = selectedCategory;
+}
