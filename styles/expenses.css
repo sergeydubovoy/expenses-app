@@ -33,9 +33,16 @@
   display: block;
   transition: all 0.3 linear;
 }
-.categories__button span {
+.button__span_right {
   position: absolute;
   right: 18px;
+  transition: transform 0.3 linear;
+  transform: rotateZ(0deg);
+}
+.button__span_down {
+  position: absolute;
+  right: 18px;
+  transition: transform 0.3 linear;
   transform: rotateZ(90deg);
 }
 .categories__list {

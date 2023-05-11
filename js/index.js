@@ -23,6 +23,9 @@ const categoryNode = document.querySelectorAll(
 const categoryNodes = document.querySelectorAll(
   '[js-data="js-categories__item"]'
 );
+
+const arrowButton = document.querySelector('[js-data="js-button__span_right"]');
+
 let selectedCategory = "";
 
 const expenses = [];
@@ -135,3 +138,9 @@ function selectCategory(category) {
   categoriesModalWrapper.classList.remove("categories__modal-wrapper_active");
   buttonChoseCategory.textContent = selectedCategory;
 }
+// не получается
+arrowButton.addEventListener("click", function () {
+  console.log(1);
+  arrowButton.classList.toggle("button__span_down");
+  toggleCategoriesModal();
+});
