@@ -1,3 +1,19 @@
-ol {
-  list-style-type: square;
+.history {
+  margin: 0 auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fce4ec;
+  border-radius: 30px;
+  width: 300px;
+  gap: 18px;
+}
+.history__list {
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.history__button_reset {
+  background-color: #e1f5fe;
 }

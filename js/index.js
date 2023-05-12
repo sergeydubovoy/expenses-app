@@ -4,27 +4,23 @@ const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Все не очень";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
 
-const inputNode = document.querySelector('[js-data="js-expense__input"]');
-const buttonNode = document.querySelector('[js-data="js-expense__button_add"]');
-const historyNode = document.querySelector('[js-data="js-history"]');
-const sumNode = document.querySelector('[js-data="js-sum"]');
-const limitNode = document.querySelector('[js-data="js-limit__value"]');
-const statusNode = document.querySelector('[js-data="js-status"]');
+const inputNode = document.querySelector('[js-data="expense__input"]');
+const buttonAddExpense = document.querySelector(
+  '[js-data="expense__button_add"]'
+);
+const historyNode = document.querySelector('[js-data="history"]');
+const sumNode = document.querySelector('[js-data="sum"]');
+const limitNode = document.querySelector('[js-data="limit__value"]');
+const statusNode = document.querySelector('[js-data="status"]');
 
 const categoriesModalWrapper = document.querySelector(
-  '[js-data="js-categories__modal-wrapper"]'
+  '[js-data="categories__modal-wrapper"]'
 );
 const buttonChoseCategory = document.querySelector(
-  '[js-data="js-categories__button"]'
+  '[js-data="categories__button"]'
 );
-const categoryNode = document.querySelectorAll(
-  '[js-data="js-categories__item"]'
-);
-const categoryNodes = document.querySelectorAll(
-  '[js-data="js-categories__item"]'
-);
-
-const arrowButton = document.querySelector('[js-data="js-button__span_right"]');
+const categoryNode = document.querySelector('[js-data="categories__item"]');
+const categoryNodes = document.querySelectorAll('[js-data="categories__item"]');
 
 let selectedCategory = "";
 
@@ -32,7 +28,7 @@ const expenses = [];
 
 initApp(expenses);
 
-buttonNode.addEventListener("click", function () {
+buttonAddExpense.addEventListener("click", function () {
   const expense = getExpenseFromUser();
 
   if (!expense) {
@@ -41,6 +37,7 @@ buttonNode.addEventListener("click", function () {
 
   trackExspenses(expense);
   render(expenses);
+  resetSelectedCategory();
 });
 
 function initApp(expenses) {
@@ -79,6 +76,11 @@ function calculateExpenses(expenses) {
   return sum;
 }
 
+function resetSelectedCategory() {
+  selectedCategory = "";
+  buttonChoseCategory.textContent = "Категория";
+}
+
 function render(expenses) {
   const sum = calculateExpenses(expenses);
 
@@ -94,7 +96,7 @@ function renderHistory(expenses) {
     expensesListHTML += `<li>${element} ${CURRENCY}</li>`;
   });
 
-  historyNode.innerHTML = `<ol>${expensesListHTML}</ol>`;
+  historyNode.innerHTML = `<ol class="history__list">${expensesListHTML}</ol>`;
 }
 
 function renderSum(sum) {
@@ -110,17 +112,23 @@ function renderStatus(sum) {
   }
 }
 
+// Новая функциональность
+
 inputNode.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    buttonNode.click();
+    buttonAddExpense.click();
   }
 });
-
-// Новая функциональность
 
 buttonChoseCategory.addEventListener("click", function () {
   toggleCategoriesModal();
 });
+
+function selectCategory(category) {
+  selectedCategory = category;
+  categoriesModalWrapper.classList.remove("categories__modal-wrapper_active");
+  buttonChoseCategory.textContent = selectedCategory;
+}
 
 categoryNodes.forEach(function (categoryNode) {
   categoryNode.addEventListener("click", function () {
@@ -132,15 +140,10 @@ function toggleCategoriesModal() {
   categoriesModalWrapper.classList.toggle("categories__modal-wrapper_active");
   selectedCategory = "";
 }
+// const arrowButton = document.querySelector('[js-data="button__span_right"]');
 
-function selectCategory(category) {
-  selectedCategory = category;
-  categoriesModalWrapper.classList.remove("categories__modal-wrapper_active");
-  buttonChoseCategory.textContent = selectedCategory;
-}
-// не получается
-arrowButton.addEventListener("click", function () {
-  console.log(1);
-  arrowButton.classList.toggle("button__span_down");
-  toggleCategoriesModal();
-});
+// arrowButton.addEventListener("click", function () {
+//   console.log(1);
+//   arrowButton.classList.toggle("button__span_down");
+//   toggleCategoriesModal();
+// });

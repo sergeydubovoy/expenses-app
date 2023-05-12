@@ -1,6 +1,6 @@
-@import url(./expenses.css);
+@import url(./manage.css);
 @import url(./history.css);
-@import url(./status.css);
+@import url(./stats.css);
 
 body {
   width: 100%;
@@ -12,14 +12,20 @@ body {
 }
 .container {
   margin: 0 auto;
+  padding: 20px 0;
   width: 800px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
-.title_main {
-  margin: 20px 0;
+.title {
   text-align: center;
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
   text-transform: uppercase;
+}
+.title {
 }

@@ -15,78 +15,82 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="title_main">Учет расходов</h1>
-      <div class="manage-wrapper">
+      <h1 class="title title_main">Учет расходов</h1>
+      <div class="manage">
         <input
-          js-data="js-expense__input"
+          js-data="expense__input"
           class="button expense__input"
           type="number"
           placeholder="₽"
         />
         <div class="categories-wrapper">
           <button
-            js-data="js-categories__button"
+            js-data="categories__button"
             class="button categories__button"
           >
-            Категория<span js-data="js-button__span_right" class="button__span_right">></span>
+            Категория<span
+              js-data="button__span_right"
+              class="button__span_right"
+              >></span
+            >
           </button>
           <div
-            js-data="js-categories__modal-wrapper"
+            js-data="categories__modal-wrapper"
             class="categories__modal-wrapper"
           >
             <ul class="categories__list">
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Еда
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Кафе и рестораны
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Транспорт
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Развлечения
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Одежда
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Электроника
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Дом
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Здоровье
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Образование
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Платежи
                 </button>
               </li>
               <li>
-                <button js-data="js-categories__item" class="categories__item">
+                <button js-data="categories__item" class="categories__item">
                   Подарки
                 </button>
               </li>
@@ -94,35 +98,40 @@
           </div>
         </div>
         <button
-          js-data="js-expense__button_add"
+          js-data="expense__button_add"
           class="button expense__button_add"
         >
           Добавить
         </button>
       </div>
-      <div class="status-wrapper">
-        <div class="limit-wrapper">
-          <p class="limit__text">
-            Лимит:
-            <span js-data="js-limit__value" class="limit__value"></span> ₽
-          </p>
-          <button js-data="js-button-change-limit" class="button-change-limit">
+      <div class="stats">
+        <h2 class="title">Статистика</h2>
+        <div class="stats__limit">
+          <p class="label">Лимит:</p>
+          <span js-data="limit__value" class="currency"></span>
+          <button js-data="button-change-limit" class="button-change-limit">
             &#10000;
           </button>
         </div>
-        <p>Сумма: <span js-data="js-sum" class="sum"></span> ₽</p>
-        <p>Статус: <span js-data="js-status" class="status"></span></p>
+        <div class="stats__sum">
+          <p class="label">Сумма:</p>
+          <span js-data="sum" class="currency"></span>
+        </div>
+        <div class="stats__status">
+          <p class="label">Статус:</p>
+          <span js-data="status" class="status currency"></span>
+        </div>
       </div>
-      <div class="history-wrapper">
-        <h2>История</h2>
-        <div js-data="js-history" class="js-history"></div>
+      <div class="history">
+        <h2 class="title">История</h2>
+        <div js-data="history" class="js-history"></div>
+        <button
+          js-data="history__button_reset"
+          class="button history__button_reset"
+        >
+          Сбросить
+        </button>
       </div>
-      <button
-        js-data="js-history__button_reset"
-        class="button history__button_reset"
-      >
-        Сбросить
-      </button>
     </div>
     <script src="./js/index.js"></script>
   </body>

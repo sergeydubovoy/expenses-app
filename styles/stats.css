@@ -1,16 +1,28 @@
+.stats {
+  margin: 0 auto;
+  padding: 18px 36px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fce4ec;
+  border-radius: 30px;
+  width: 300px;
+  gap: 18px;
+}
 .status {
   color: green;
 }
 .status_red {
   color: red;
 }
-.limit-wrapper {
+.stats__limit,
+.stats__sum,
+.stats__status {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
-.limit__text {
+.label {
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;

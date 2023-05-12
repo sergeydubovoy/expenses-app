@@ -1,4 +1,4 @@
-.manage-wrapper {
+.manage {
   margin: 0 auto;
   padding: 18px;
   display: flex;
@@ -81,6 +81,4 @@ input[type="number"]::-webkit-inner-spin-button {
 .expense__button_add {
   background-color: #e1f5fe;
 }
-.history__button_reset {
-  background-color: #e1f5fe;
-}
+
