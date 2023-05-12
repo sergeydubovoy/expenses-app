@@ -17,6 +17,9 @@ const historyNode = document.querySelector('[js-data="history"]');
 const sumNode = document.querySelector('[js-data="sum"]');
 const limitNode = document.querySelector('[js-data="limit__value"]');
 const statusNode = document.querySelector('[js-data="status"]');
+const buttonResetHistory = document.querySelector(
+  '[js-data="history__button_reset"]'
+);
 
 const expenses = [];
 
@@ -70,7 +73,8 @@ function initApp(expenses) {
 }
 
 function trackExspenses(expense) {
-  expenses.push(expense);
+  const expenseObject = { name: expense, category: selectedCategory };
+  expenses.push(expenseObject);
 }
 
 function getExpenseFromUser() {
@@ -90,13 +94,14 @@ function clearInput() {
 }
 
 function calculateExpenses(expenses) {
-  let sum = 0;
+  const total = expenses.reduce((sum, expense) => {
+    if (typeof expense.name === "number") {
+      return sum + expense.name;
+    }
+    return sum;
+  }, 0);
 
-  expenses.forEach((element) => {
-    sum += element;
-  });
-
-  return sum;
+  return total;
 }
 
 function resetSelectedCategory() {
@@ -115,8 +120,10 @@ function render(expenses) {
 function renderHistory(expenses) {
   let expensesListHTML = "";
 
-  expenses.forEach((element) => {
-    expensesListHTML += `<li>${element} ${CURRENCY}</li>`;
+  expenses.forEach((expense) => {
+    expensesListHTML += `<li>${expense.name} ${CURRENCY} - ${
+      expense.category ? expense.category : ""
+    }</li>`;
   });
 
   historyNode.innerHTML = `<ol class="history__list">${expensesListHTML}</ol>`;
@@ -189,4 +196,12 @@ changeLimitButton.addEventListener("click", function (event) {
   popup.style.opacity = "0";
   popup.style.visibility = "hidden";
   body.classList.remove("body_fixed");
+});
+
+// Сброс
+
+buttonResetHistory.addEventListener("click", function () {
+  expenses.length = 0;
+  render([]);
+  resetSelectedCategory();
 });
