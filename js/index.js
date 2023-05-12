@@ -198,6 +198,22 @@ changeLimitButton.addEventListener("click", function (event) {
   body.classList.remove("body_fixed");
 });
 
+closePopupButton.addEventListener("click", function () {
+  closePopup();
+});
+
+popup.addEventListener("click", function (event) {
+  if (event.target === popup) {
+    closePopup();
+  }
+});
+
+function closePopup() {
+  popup.style.opacity = "0";
+  popup.style.visibility = "hidden";
+  body.classList.remove("body_fixed");
+}
+
 // Сброс
 
 buttonResetHistory.addEventListener("click", function () {
