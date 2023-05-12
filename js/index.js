@@ -1,9 +1,10 @@
+let LIMIT = 10000;
+
 // Константы со значениями
 
-const LIMIT = 10000;
 const CURRENCY = "₽";
 const STATUS_IN_LIMIT = "Все хорошо";
-const STATUS_OUT_OF_LIMIT = "Все не очень";
+const STATUS_OUT_OF_LIMIT = "Лимит превышен";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
 
 // Константы для добавления расходов
@@ -29,6 +30,7 @@ const buttonChoseCategory = document.querySelector(
 );
 const categoryNode = document.querySelector('[js-data="categories__item"]');
 const categoryNodes = document.querySelectorAll('[js-data="categories__item"]');
+const arrowButton = document.querySelector('[js-data="button__span"]');
 
 let selectedCategory = "";
 
@@ -141,41 +143,37 @@ inputNode.addEventListener("keydown", function (event) {
   }
 });
 
-// Изменение класса списка категорий
+// Выбор категорий
 
 buttonChoseCategory.addEventListener("click", function () {
   toggleCategoriesModal();
+  arrowButton.style.transform =
+    arrowButton.style.transform === "rotateZ(90deg)"
+      ? "rotateZ(0deg)"
+      : "rotateZ(90deg)";
 });
-
-// Функция выбора категории
 
 function selectCategory(category) {
   selectedCategory = category;
   categoriesModalWrapper.classList.remove("categories__modal-wrapper_active");
   buttonChoseCategory.textContent = selectedCategory;
+  arrowButton.style.transform = "rotateZ(0deg)";
 }
-
-// Цикл с функцией, которая принимает текст названий категорий
 
 categoryNodes.forEach(function (categoryNode) {
   categoryNode.addEventListener("click", function () {
     selectCategory(categoryNode.textContent);
+    arrowButton.style.transform = "rotateZ(0deg)";
   });
 });
-
-// Функция меняет класс для модального окна и очищает текст выбранной категории
 
 function toggleCategoriesModal() {
   categoriesModalWrapper.classList.toggle("categories__modal-wrapper_active");
   selectedCategory = "";
+  arrowButton.style.transform = "rotateZ(0deg)";
 }
-// const arrowButton = document.querySelector('[js-data="button__span_right"]');
 
-// arrowButton.addEventListener("click", function () {
-//   console.log(1);
-//   arrowButton.classList.toggle("button__span_down");
-//   toggleCategoriesModal();
-// });
+// Попап
 
 openPopupButton.addEventListener("click", function () {
   popup.style.opacity = "1";
@@ -185,7 +183,8 @@ openPopupButton.addEventListener("click", function () {
 
 changeLimitButton.addEventListener("click", function (event) {
   const newLimitValue = changeLimitInput.value;
-  limitNode.innerHTML = newLimitValue;
+  LIMIT = newLimitValue;
+  limitNode.innerHTML = LIMIT;
 
   popup.style.opacity = "0";
   popup.style.visibility = "hidden";

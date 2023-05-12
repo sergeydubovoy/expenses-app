@@ -17,23 +17,23 @@
     <div class="container">
       <h1 class="title title_main">Учет расходов</h1>
       <div class="manage">
-        <input
-          js-data="expense__input"
-          class="button expense__input"
-          type="number"
-          placeholder="₽"
-        />
+        <div class="button input-wrapper currency">
+          <input
+            js-data="expense__input"
+            class="expense__input"
+            type="number"
+            placeholder="Расход"
+            min="1"
+          />
+        </div>
         <div class="categories-wrapper">
           <button
             js-data="categories__button"
             class="button categories__button"
           >
-            Категория<span
-              js-data="button__span_right"
-              class="button__span_right"
-              >></span
-            >
+            Категория
           </button>
+          <span js-data="button__span" class="button__span">></span>
           <div
             js-data="categories__modal-wrapper"
             class="categories__modal-wrapper"
