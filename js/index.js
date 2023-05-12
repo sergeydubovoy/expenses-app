@@ -1,8 +1,12 @@
+// Константы со значениями
+
 const LIMIT = 10000;
 const CURRENCY = "₽";
 const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Все не очень";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
+
+// Константы для добавления расходов
 
 const inputNode = document.querySelector('[js-data="expense__input"]');
 const buttonAddExpense = document.querySelector(
@@ -12,6 +16,10 @@ const historyNode = document.querySelector('[js-data="history"]');
 const sumNode = document.querySelector('[js-data="sum"]');
 const limitNode = document.querySelector('[js-data="limit__value"]');
 const statusNode = document.querySelector('[js-data="status"]');
+
+const expenses = [];
+
+// Константы для выбора категория
 
 const categoriesModalWrapper = document.querySelector(
   '[js-data="categories__modal-wrapper"]'
@@ -24,7 +32,20 @@ const categoryNodes = document.querySelectorAll('[js-data="categories__item"]');
 
 let selectedCategory = "";
 
-const expenses = [];
+// Константы для вызова попапа и изменения лимита
+
+const body = document.querySelector(".body");
+const openPopupButton = document.querySelector('[js-data="limit__button"]');
+const closePopupButton = document.querySelector(
+  '[js-data="popup__close-button"]'
+);
+const changeLimitInput = document.querySelector(
+  '[js-data="change-limit__input"]'
+);
+const changeLimitButton = document.querySelector(
+  '[js-data="change-limit__button"]'
+);
+const popup = document.querySelector('[js-data="popup"]');
 
 initApp(expenses);
 
@@ -112,7 +133,7 @@ function renderStatus(sum) {
   }
 }
 
-// Новая функциональность
+// Добавление расхода по нажатию Enter
 
 inputNode.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
@@ -120,9 +141,13 @@ inputNode.addEventListener("keydown", function (event) {
   }
 });
 
+// Изменение класса списка категорий
+
 buttonChoseCategory.addEventListener("click", function () {
   toggleCategoriesModal();
 });
+
+// Функция выбора категории
 
 function selectCategory(category) {
   selectedCategory = category;
@@ -130,11 +155,15 @@ function selectCategory(category) {
   buttonChoseCategory.textContent = selectedCategory;
 }
 
+// Цикл с функцией, которая принимает текст названий категорий
+
 categoryNodes.forEach(function (categoryNode) {
   categoryNode.addEventListener("click", function () {
     selectCategory(categoryNode.textContent);
   });
 });
+
+// Функция меняет класс для модального окна и очищает текст выбранной категории
 
 function toggleCategoriesModal() {
   categoriesModalWrapper.classList.toggle("categories__modal-wrapper_active");
@@ -147,3 +176,18 @@ function toggleCategoriesModal() {
 //   arrowButton.classList.toggle("button__span_down");
 //   toggleCategoriesModal();
 // });
+
+openPopupButton.addEventListener("click", function () {
+  popup.style.opacity = "1";
+  popup.style.visibility = "visible";
+  body.classList.toggle("body_fixed");
+});
+
+changeLimitButton.addEventListener("click", function (event) {
+  const newLimitValue = changeLimitInput.value;
+  limitNode.innerHTML = newLimitValue;
+
+  popup.style.opacity = "0";
+  popup.style.visibility = "hidden";
+  body.classList.remove("body_fixed");
+});

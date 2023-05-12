@@ -32,3 +32,12 @@
   font-size: 16px;
   line-height: 18px;
 }
+.currency::after {
+  content: " ₽";
+}
+.limit__button {
+  background-color: #e1f5fe;
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+}

@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
-  <body>
+  <body class="body">
     <div class="container">
       <h1 class="title title_main">Учет расходов</h1>
       <div class="manage">
@@ -109,7 +109,7 @@
         <div class="stats__limit">
           <p class="label">Лимит:</p>
           <span js-data="limit__value" class="currency"></span>
-          <button js-data="button-change-limit" class="button-change-limit">
+          <button js-data="limit__button" class="limit__button">
             &#10000;
           </button>
         </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="stats__status">
           <p class="label">Статус:</p>
-          <span js-data="status" class="status currency"></span>
+          <span js-data="status" class="status"></span>
         </div>
       </div>
       <div class="history">
@@ -130,6 +130,28 @@
           class="button history__button_reset"
         >
           Сбросить
+        </button>
+      </div>
+    </div>
+    <div js-data="popup" class="popup">
+      <div class="popup__content">
+        <div class="popup__title-wrapper">
+          <h2 class="title">Новый лимит</h2>
+          <button js-data="popup__close-button" class="popup__close-button">
+            <span class="close-button__line"></span>
+          </button>
+        </div>
+        <input
+          js-data="change-limit__input"
+          class="button change-limit__input"
+          type="number"
+          placeholder="₽"
+        />
+        <button
+          js-data="change-limit__button"
+          class="button change-limit__button"
+        >
+          Изменить
         </button>
       </div>
     </div>

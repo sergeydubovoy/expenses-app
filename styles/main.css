@@ -1,6 +1,7 @@
 @import url(./manage.css);
 @import url(./history.css);
 @import url(./stats.css);
+@import url(./popup.css);
 
 body {
   width: 100%;
@@ -10,10 +11,13 @@ body {
   background-color: #f5f5f5;
   color: #424242;
 }
+.body_fixed {
+  overflow: hidden;
+}
 .container {
   margin: 0 auto;
   padding: 20px 0;
-  width: 800px;
+  width: 500px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -27,5 +31,7 @@ body {
   line-height: 18px;
   text-transform: uppercase;
 }
-.title {
+.title_main {
+  font-size: 20px;
+  line-height: 24px;
 }

@@ -65,13 +65,14 @@
   outline: none;
   font-weight: 700;
   text-align: left;
+  color: #424242;
 }
 .expense__input {
   background-color: whitesmoke;
   text-align: left;
 }
 .expense__input::placeholder {
-  color: black;
+  color: #424242;
   text-align: right;
 }
 input[type="number"]::-webkit-outer-spin-button,
@@ -81,4 +82,3 @@ input[type="number"]::-webkit-inner-spin-button {
 .expense__button_add {
   background-color: #e1f5fe;
 }
-
