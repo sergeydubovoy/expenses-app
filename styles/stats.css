@@ -5,7 +5,7 @@
   flex-direction: column;
   background-color: #fce4ec;
   border-radius: 30px;
-  width: 300px;
+  width: 400px;
   gap: 18px;
 }
 .status {
@@ -32,9 +32,9 @@
   font-size: 16px;
   line-height: 18px;
 }
-.currency::after {
+/* .currency::after {
   content: " ₽";
-}
+} */
 .limit__button {
   background-color: #e1f5fe;
   border-radius: 100%;

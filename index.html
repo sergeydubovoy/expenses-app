@@ -19,7 +19,7 @@
       <div class="manage">
         <div class="button input-wrapper currency">
           <input
-            js-data="expense__input"
+            id="expenseInput"
             class="expense__input"
             type="number"
             placeholder="Расход"
@@ -27,130 +27,75 @@
           />
         </div>
         <div class="categories-wrapper">
-          <button
-            js-data="categories__button"
-            class="button categories__button"
+          <select
+            id="categorySelect"
+            name="category"
+            class="button categories__select"
           >
             Категория
-          </button>
-          <span js-data="button__span" class="button__span">></span>
-          <div
-            js-data="categories__modal-wrapper"
-            class="categories__modal-wrapper"
-          >
-            <ul class="categories__list">
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Еда
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Кафе и рестораны
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Транспорт
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Развлечения
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Одежда
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Электроника
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Дом
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Здоровье
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Образование
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Платежи
-                </button>
-              </li>
-              <li>
-                <button js-data="categories__item" class="categories__item">
-                  Подарки
-                </button>
-              </li>
-            </ul>
-          </div>
+            <option value="" selected disabled>Категория</option>
+            <option value="Продукты">Продукты</option>
+            <option value="Кафе и рестораны">Кафе и рестораны</option>
+            <option value="Транспорт">Транспорт</option>
+            <option value="Коммунальные услуги">Коммунальные услуги</option>
+            <option value="Развлечения и хобби">Развлечения и хобби</option>
+            <option value="Медицина">Медицина</option>
+            <option value="Платежи">Платежи</option>
+            <option value="Подарки">Подарки</option>
+            <option value="Электроника">Электроника</option>
+            <option value="Одежда и обувь">Одежда и обувь</option>
+            <option value="Другое">Другое</option>
+          </select>
         </div>
-        <button
-          js-data="expense__button_add"
-          class="button expense__button_add"
-        >
+        <button id="addExpenseButton" class="button expense__button_add">
           Добавить
         </button>
       </div>
       <div class="stats">
         <h2 class="title">Статистика</h2>
         <div class="stats__limit">
-          <p class="label">Лимит:</p>
-          <span js-data="limit__value" class="currency"></span>
-          <button js-data="limit__button" class="limit__button">
+          <label class="label">Лимит:</label>
+          <span id="limitValue" class="currency"></span>
+          <button
+            id="openPopupButton"
+            js-data="limit__button"
+            class="limit__button"
+          >
             &#10000;
           </button>
         </div>
         <div class="stats__sum">
-          <p class="label">Сумма:</p>
-          <span js-data="sum" class="currency"></span>
+          <label class="label">Сумма:</label>
+          <span id="sumValue" class="currency"></span>
         </div>
         <div class="stats__status">
-          <p class="label">Статус:</p>
-          <span js-data="status" class="status"></span>
+          <label class="label">Статус:</label>
+          <span id="status" class="status"></span>
         </div>
       </div>
       <div class="history">
         <h2 class="title">История</h2>
-        <div js-data="history" class="js-history"></div>
-        <button
-          js-data="history__button_reset"
-          class="button history__button_reset"
-        >
+        <div id="history" class="history-wrapper"></div>
+        <button id="resetHistoryButton" class="button history__button_reset">
           Сбросить
         </button>
       </div>
     </div>
-    <div js-data="popup" class="popup">
+    <div id="popup" class="popup">
       <div class="popup__content">
         <div class="popup__title-wrapper">
           <h2 class="title">Новый лимит</h2>
-          <button js-data="popup__close-button" class="popup__close-button">
+          <button id="closePopupButton" class="popup__close-button">
             <span class="close-button__line"></span>
           </button>
         </div>
         <input
-          js-data="change-limit__input"
+          id="newLimitInput"
           class="button change-limit__input"
           type="number"
           placeholder="₽"
         />
-        <button
-          js-data="change-limit__button"
-          class="button change-limit__button"
-        >
+        <button id="changeLimitButton" class="button change-limit__button">
           Изменить
         </button>
       </div>

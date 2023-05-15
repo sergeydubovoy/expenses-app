@@ -81,7 +81,8 @@ audio,
 video,
 button,
 input,
-picture {
+picture,
+select {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -90,7 +91,8 @@ picture {
   font: inherit;
   vertical-align: baseline;
 }
-button {
+button,
+select {
   cursor: pointer;
 }
 /* HTML5 display-role reset for older browsers */
