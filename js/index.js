@@ -275,8 +275,10 @@ const closePopup = () => {
 
 // Сброс
 
-resetHistoryButton.addEventListener("click", () => {
+const resetHistory = () => {
   expenses.length = 0;
   render([]);
   resetSelectedCategory();
-});
+};
+
+resetHistoryButton.addEventListener("click", resetHistory);
