@@ -38,13 +38,22 @@ const changeLimitButton = document.getElementById("changeLimitButton");
 // Функция подсчета суммы расходов
 // - Отделяет от расхода+категории само значение расхода и считает сумму
 
-const calculateExpenses = (expenses) => {
-  const total = expenses.reduce((sum, expense) => {
+const calculateSum = (expenses) => {
+  const sum = expenses.reduce((sum, expense) => {
     return sum + expense.amount;
   }, 0);
 
-  return total;
+  return sum;
 };
+
+// const calculateSum = (expenses) => {
+//   let sum = 0;
+//   expenses.forEach(function (expense) {
+//     sum += expense.amount;
+//   });
+
+//   return sum;
+// }
 
 // Функция трекера расходов
 // - Проверяет на тип данных
@@ -83,7 +92,7 @@ const getExpenseFromUser = () => {
 const initApp = (expenses) => {
   limitNode.innerText = LIMIT + CURRENCY;
   statusNode.innerText = STATUS_IN_LIMIT;
-  sumNode.innerText = calculateExpenses(expenses) + CURRENCY;
+  sumNode.innerText = calculateSum(expenses) + CURRENCY;
 };
 
 // Запуск функции инициации
@@ -136,7 +145,7 @@ const resetSelectedCategory = () => {
 // - Запускает функцию рендеринга статусы
 
 const render = (expenses) => {
-  const sum = calculateExpenses(expenses);
+  const sum = calculateSum(expenses);
 
   renderHistory(expenses);
   renderSum(sum);
@@ -226,10 +235,10 @@ changeLimitButton.addEventListener("click", (event) => {
   }
   LIMIT = newLimitValue;
   limitNode.innerHTML = LIMIT;
-  renderStatus(calculateExpenses(expenses));
+  renderStatus(calculateSum(expenses));
   statusNode.classList.toggle(
     STATUS_OUT_OF_LIMIT_CLASSNAME,
-    calculateExpenses(expenses) > LIMIT
+    calculateSum(expenses) > LIMIT
   );
   closePopup();
 });
