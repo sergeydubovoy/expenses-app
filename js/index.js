@@ -1,3 +1,5 @@
+//--ОБЪЯВЛЯЕМ ПЕРЕМЕННЫЕ И КОНСТАНТЫ--------------------------------------
+
 // Элементы со значениями
 
 let LIMIT = 10000;
@@ -31,6 +33,11 @@ const closePopupButton = document.getElementById("closePopupButton");
 const newLimitInput = document.getElementById("newLimitInput");
 const changeLimitButton = document.getElementById("changeLimitButton");
 
+//--ФУНКЦИИ-----------------------------------------------------------------
+
+// Функция подсчета суммы расходов
+// - Отделяет от расхода+категории само значение расхода и считает сумму
+
 const calculateExpenses = (expenses) => {
   const total = expenses.reduce((sum, expense) => {
     if (typeof expense.amount === "number") {
@@ -42,10 +49,19 @@ const calculateExpenses = (expenses) => {
   return total;
 };
 
+// Функция трекера расходов
+// - Собирает значение расхода и его категорию
+// - Добавляет в массив
+
 const trackExpenses = (expense) => {
   const expenseObject = { amount: expense, category: categorySelect.value };
   expenses.push(expenseObject);
 };
+
+// Функция получения расхода от пользователя
+// - Проверяет инпут на пустое значение и на соответствие числу
+// - Очищает инпут
+// - Получает расход
 
 const getExpenseFromUser = () => {
   if (!inputNode.value) {
@@ -59,13 +75,26 @@ const getExpenseFromUser = () => {
   return expense;
 };
 
+// Главная функция инициализации приложения
+// - Задает изначальные значения переменных при открытии приложения
+
 const initApp = (expenses) => {
   limitNode.innerText = LIMIT + CURRENCY;
   statusNode.innerText = STATUS_IN_LIMIT;
   sumNode.innerText = calculateExpenses(expenses) + CURRENCY;
 };
 
+// Запуск функции инициации
+
 initApp(expenses);
+
+// Обработчик события по клику на кнопку "Добавить"
+// - Объявляем константу с функцией получения расхода от пользователя
+// - Проверяем на пустую строку
+// - Запускаем функции:
+//   - Трекера расходов
+//   - Рендера
+//   - Сброса выбранной категории
 
 addExpenseButton.addEventListener("click", () => {
   const expense = getExpenseFromUser();
@@ -79,13 +108,25 @@ addExpenseButton.addEventListener("click", () => {
   resetSelectedCategory();
 });
 
+// Функция очистки инпута после ввода расхода
+// - Очищает поле инпута после ввода расхода
+
 const clearInput = () => {
   inputNode.value = "";
 };
 
+// Функция сброса выбранной категории
+// - Устанавливает выбранное значение в выпадающем меню select на значение по умолчанию
+
 const resetSelectedCategory = () => {
   categorySelect.selectedIndex = 0;
 };
+
+// Большая функция рендеринга
+// - Запускает функцию подсчета суммы расходов
+// - Запускает функцию рендеринга истории
+// - Запускает функцию рендеринга суммы
+// - Запускает функцию рендеринга статусы
 
 const render = (expenses) => {
   const sum = calculateExpenses(expenses);
@@ -94,6 +135,17 @@ const render = (expenses) => {
   renderSum(sum);
   renderStatus(sum);
 };
+
+// Функция рендеринга истории
+// - Создаем пустую строку, в которую будем добавлять новые элементы
+// - Создаем список расходов на основе массива объектов expenses
+//   - Цикл forEach проходит по каждому элементу массива expenses, который представляет один расход
+//     и добавляет в переменную expensesListHTML новый элемент списка
+//   - Элемент списка формируется с помощью шаблонной строки,
+//     в которой информация о сумме расхода expense.amount и категория расхода expense.category
+//   - Если для расхода не была указана категория,
+//     тогда отображается пустая строка вместо категории (пустые кавычки)
+// - Создаем список расходов
 
 const renderHistory = (expenses) => {
   let expensesListHTML = "";
@@ -107,9 +159,17 @@ const renderHistory = (expenses) => {
   historyNode.innerHTML = `<ol class="history__list">${expensesListHTML}</ol>`;
 };
 
+// Функция рендеринга суммы
+// - В sumNode с поомощью свойства innerText вставляем сумму и знак рубля 
+
 const renderSum = (sum) => {
   sumNode.innerText = sum + CURRENCY;
 };
+
+// Функция рендеринга статуса
+// - Проверяем значение суммы
+//   - Если лимит больше суммы, то с помощью свойства innerText пишем, что все ок
+//   - Если же сумма больше лимита, то с помощью свойства innerText подставляем шаблонную строку
 
 const renderStatus = (sum) => {
   if (sum <= LIMIT) {
