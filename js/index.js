@@ -40,20 +40,22 @@ const changeLimitButton = document.getElementById("changeLimitButton");
 
 const calculateExpenses = (expenses) => {
   const total = expenses.reduce((sum, expense) => {
-    if (typeof expense.amount === "number") {
-      return sum + expense.amount;
-    }
-    return sum;
+    return sum + expense.amount;
   }, 0);
 
   return total;
 };
 
 // Функция трекера расходов
+// - Проверяет на тип данных
 // - Собирает значение расхода и его категорию
 // - Добавляет в массив
 
 const trackExpenses = (expense) => {
+  if (typeof expense !== "number") {
+    return;
+  }
+
   const expenseObject = { amount: expense, category: categorySelect.value };
   expenses.push(expenseObject);
 };
@@ -64,7 +66,7 @@ const trackExpenses = (expense) => {
 // - Получает расход
 
 const getExpenseFromUser = () => {
-  if (!inputNode.value) {
+  if (inputNode.value === "") {
     return null;
   }
 
@@ -88,7 +90,7 @@ const initApp = (expenses) => {
 
 initApp(expenses);
 
-// Обработчик события по клику на кнопку "Добавить"
+// Функция добавления расхода
 // - Объявляем константу с функцией получения расхода от пользователя
 // - Проверяем на пустую строку
 // - Запускаем функции:
@@ -96,7 +98,7 @@ initApp(expenses);
 //   - Рендера
 //   - Сброса выбранной категории
 
-addExpenseButton.addEventListener("click", () => {
+const addExpense = () => {
   const expense = getExpenseFromUser();
 
   if (!expense) {
@@ -106,7 +108,12 @@ addExpenseButton.addEventListener("click", () => {
   trackExpenses(expense);
   render(expenses);
   resetSelectedCategory();
-});
+};
+
+// Обработчик события по клику на кнопку "Добавить"
+// - При клике запускает функцию addExpense
+
+addExpenseButton.addEventListener("click", addExpense);
 
 // Функция очистки инпута после ввода расхода
 // - Очищает поле инпута после ввода расхода
@@ -160,7 +167,7 @@ const renderHistory = (expenses) => {
 };
 
 // Функция рендеринга суммы
-// - В sumNode с поомощью свойства innerText вставляем сумму и знак рубля 
+// - В sumNode с поомощью свойства innerText вставляем сумму и знак рубля
 
 const renderSum = (sum) => {
   sumNode.innerText = sum + CURRENCY;
@@ -186,7 +193,7 @@ const renderStatus = (sum) => {
 
 inputNode.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
-    addExpenseButton.click();
+    addExpense();
   }
 });
 
