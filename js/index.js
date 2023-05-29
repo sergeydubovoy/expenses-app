@@ -7,6 +7,9 @@ const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Лимит превышен";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
 
+const STORAGE_LABEL_LIMIT = "Limit";
+const STORAGE_LABEL_EXPENSES = "expenses";
+
 // Элементы для добавления расходов, статистики, выбора категорий
 
 const inputNode = document.getElementById("expenseInput");
@@ -22,7 +25,9 @@ const statusNode = document.getElementById("status");
 const historyNode = document.getElementById("history");
 const resetHistoryButton = document.getElementById("resetHistoryButton");
 
-const expenses = [];
+const expensesFromStorageString = localStorage.getItem(STORAGE_LABEL_EXPENSES);
+const expensesFromStorage = JSON.parse(expensesFromStorageString);
+let expenses = [];
 
 let selectedCategory = "";
 
@@ -48,19 +53,18 @@ const calculateSum = (expenses) => {
   return sum;
 };
 
-// const calculateSum = (expenses) => {
-//   let sum = 0;
-//   expenses.forEach(function (expense) {
-//     sum += expense.amount;
-//   });
+// Функция сохранения расходов в localStorage
 
-//   return sum;
-// }
+const saveExpensesToLocalStorage = () => {
+  const expensesString = JSON.stringify(expenses);
+  localStorage.setItem(STORAGE_LABEL_EXPENSES, expensesString);
+};
 
 // Функция трекера расходов
 // - Проверяет на тип данных
 // - Собирает значение расхода и его категорию
 // - Добавляет в массив
+// - Добавляет в localStorage
 
 const trackExpenses = (expense) => {
   if (typeof expense !== "number") {
@@ -69,6 +73,8 @@ const trackExpenses = (expense) => {
 
   const expenseObject = { amount: expense, category: categorySelectNode.value };
   expenses.push(expenseObject);
+
+  saveExpensesToLocalStorage();
 };
 
 // Функция получения расхода от пользователя
@@ -87,10 +93,11 @@ const getExpenseFromUser = () => {
 
   return expense;
 };
+
 // Функция инициализации лимита из локального хранилища браузера
 
 const initLimit = () => {
-  const localStorageLimit = localStorage.getItem("Limit");
+  const localStorageLimit = localStorage.getItem(STORAGE_LABEL_LIMIT);
   if (localStorageLimit) {
     LIMIT = localStorageLimit;
     limitNode.innerText = LIMIT + CURRENCY;
@@ -211,6 +218,12 @@ const renderStatus = (sum) => {
   }
 };
 
+// Рендерим историю расходов из localStorage
+if (Array.isArray(expensesFromStorage)) {
+  expenses = expensesFromStorage;
+}
+render(expenses);
+
 // Добавление расхода по нажатию Enter
 
 inputNode.addEventListener("keydown", (event) => {
@@ -256,7 +269,7 @@ const setNewLimit = () => {
     STATUS_OUT_OF_LIMIT_CLASSNAME,
     calculateSum(expenses) > LIMIT
   );
-  localStorage.setItem("Limit", newLimitValue);
+  localStorage.setItem(STORAGE_LABEL_LIMIT, newLimitValue);
   closePopup();
 };
 
@@ -298,6 +311,7 @@ const resetHistory = () => {
   expenses.length = 0;
   render([]);
   resetSelectedCategory();
+  localStorage.removeItem(STORAGE_LABEL_EXPENSES);
 };
 
 resetHistoryButton.addEventListener("click", resetHistory);
