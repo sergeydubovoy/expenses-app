@@ -11,8 +11,8 @@ const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
 
 const inputNode = document.getElementById("expenseInput");
 const addExpenseButton = document.getElementById("addExpenseButton");
-const categorySelect = document.getElementById("categorySelect");
-let categoryNode = categorySelect.value;
+const categorySelectNode = document.getElementById("categorySelect");
+let categoryNode = categorySelectNode.value;
 const sumNode = document.getElementById("sumValue");
 
 const limitNode = document.getElementById("limitValue");
@@ -67,7 +67,7 @@ const trackExpenses = (expense) => {
     return;
   }
 
-  const expenseObject = { amount: expense, category: categorySelect.value };
+  const expenseObject = { amount: expense, category: categorySelectNode.value };
   expenses.push(expenseObject);
 };
 
@@ -112,7 +112,8 @@ initApp(expenses);
 const addExpense = () => {
   const expense = getExpenseFromUser();
 
-  if (!expense) {
+  if (!expense || categorySelectNode.selectedIndex === 0) {
+    alert(!expense ? "Введите сумму расхода" : "Выберите категорию");
     return;
   }
 
@@ -137,7 +138,7 @@ const clearInput = () => {
 // - Устанавливает выбранное значение в выпадающем меню select на значение по умолчанию
 
 const resetSelectedCategory = () => {
-  categorySelect.selectedIndex = 0;
+  categorySelectNode.selectedIndex = 0;
 };
 
 // Большая функция рендеринга
@@ -210,9 +211,11 @@ inputNode.addEventListener("keydown", (event) => {
 
 // Выбор категорий
 
-categorySelect.addEventListener("change", () => {
-  categoryNode = categorySelect.value;
-});
+categorySelectNode.addEventListener("change", categorySelect);
+
+const categorySelect = () => {
+  categoryNode = categorySelectNode.value;
+};
 
 // Открытие попапа
 
