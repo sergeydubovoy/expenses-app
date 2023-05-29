@@ -2,7 +2,6 @@
 
 // Элементы со значениями
 
-let LIMIT = 10000;
 const CURRENCY = " ₽";
 const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Лимит превышен";
@@ -15,7 +14,10 @@ const addExpenseButton = document.getElementById("addExpenseButton");
 const categorySelect = document.getElementById("categorySelect");
 let categoryNode = categorySelect.value;
 const sumNode = document.getElementById("sumValue");
+
 const limitNode = document.getElementById("limitValue");
+let LIMIT = localStorage.getItem("Limit");
+
 const statusNode = document.getElementById("status");
 const historyNode = document.getElementById("history");
 const resetHistoryButton = document.getElementById("resetHistoryButton");
@@ -214,11 +216,13 @@ categorySelect.addEventListener("change", () => {
 
 // Открытие попапа
 
-openPopupButton.addEventListener("click", () => {
+const openPopup = () => {
   popup.style.opacity = "1";
   popup.style.visibility = "visible";
   body.classList.toggle("body_fixed");
-});
+};
+
+openPopupButton.addEventListener("click", openPopup);
 
 // Функция изменения лимита, в которой:
 // - присвоение значения нового лимита от инпута
@@ -227,7 +231,7 @@ openPopupButton.addEventListener("click", () => {
 // - пересчет лимита и тоггл класса, чтобы статус правильно отображался
 // - закрытие попапа
 
-changeLimitButton.addEventListener("click", (event) => {
+const setNewLimit = () => {
   const newLimitValue = newLimitInput.value;
   if (!newLimitValue || Number(newLimitValue) <= 0) {
     alert("Лимит должен быть числом, большим нуля!");
@@ -240,8 +244,11 @@ changeLimitButton.addEventListener("click", (event) => {
     STATUS_OUT_OF_LIMIT_CLASSNAME,
     calculateSum(expenses) > LIMIT
   );
+  localStorage.setItem("Limit", newLimitValue);
   closePopup();
-});
+};
+
+changeLimitButton.addEventListener("click", setNewLimit);
 
 // Вызываем обработчик событий, чтобы лимит менялся еще и по нажатию Enter
 
