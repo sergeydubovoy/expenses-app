@@ -14,9 +14,9 @@ const addExpenseButton = document.getElementById("addExpenseButton");
 const categorySelectNode = document.getElementById("categorySelect");
 let categoryNode = categorySelectNode.value;
 const sumNode = document.getElementById("sumValue");
-
 const limitNode = document.getElementById("limitValue");
-let LIMIT = localStorage.getItem("Limit");
+
+let LIMIT = 10000;
 
 const statusNode = document.getElementById("status");
 const historyNode = document.getElementById("history");
@@ -87,11 +87,21 @@ const getExpenseFromUser = () => {
 
   return expense;
 };
+// Функция инициализации лимита из локального хранилища браузера
+
+const initLimit = () => {
+  const localStorageLimit = localStorage.getItem("Limit");
+  if (localStorageLimit) {
+    LIMIT = localStorageLimit;
+    limitNode.innerText = LIMIT + CURRENCY;
+  } else return;
+};
 
 // Главная функция инициализации приложения
 // - Задает изначальные значения переменных при открытии приложения
 
 const initApp = (expenses) => {
+  initLimit();
   limitNode.innerText = LIMIT + CURRENCY;
   statusNode.innerText = STATUS_IN_LIMIT;
   sumNode.innerText = calculateSum(expenses) + CURRENCY;
@@ -210,12 +220,11 @@ inputNode.addEventListener("keydown", (event) => {
 });
 
 // Выбор категорий
-
-categorySelectNode.addEventListener("change", categorySelect);
-
 const categorySelect = () => {
   categoryNode = categorySelectNode.value;
 };
+
+categorySelectNode.addEventListener("change", categorySelect);
 
 // Открытие попапа
 
